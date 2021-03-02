@@ -1,0 +1,30 @@
+package cda.ftp.ihm.components;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+public class FTPiconView {
+	public VBox generateView() {
+		VBox mainBox = new VBox();
+		Text fileName = new Text("this is a test");
+		
+		FileInputStream input = null;
+		try {
+			input = new FileInputStream("resources/images/iconmonstr-home-6-48.png");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		Image image = new Image(input);
+		ImageView imageView = new ImageView(image);
+		
+		mainBox.getChildren().add(imageView);
+		mainBox.getChildren().add(fileName);
+		
+		return mainBox;
+	}
+}

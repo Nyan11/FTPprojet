@@ -1,0 +1,5 @@
+package cda.ftp.ihm.components.icons;
+
+public enum MimeTypes {
+
+}

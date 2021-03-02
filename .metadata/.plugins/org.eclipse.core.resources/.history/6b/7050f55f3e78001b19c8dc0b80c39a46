@@ -1,0 +1,46 @@
+package cda.ftp.ihm;
+
+import cda.ftp.ihm.components.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
+/**
+ * JavaFX App
+ */
+public class App extends Application {
+
+    @Override
+    public void start(Stage stage) {
+        var javaVersion = SystemInfo.javaVersion();
+        var javafxVersion = SystemInfo.javafxVersion();
+
+        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        var scene = new Scene(new StackPane(label), 640, 480);
+        
+        FTPloginView login = new FTPloginView();
+        FTPdirView dir = new FTPdirView();
+        FTPmenuView menu = new FTPmenuView();
+        FTPactionView action = new FTPactionView();
+        FTPselectView select = new FTPselectView();
+        FTPiconView icon = new FTPiconView("test", true);
+        
+        VBox main = new VBox();
+        main.getChildren().add(menu.generateView());
+        main.getChildren().add(dir.generateView());
+        main.getChildren().add(select.generateView());
+        main.getChildren().add(action.generateView());
+        Scene mainScene = new Scene(icon.generateView(), 640, 480);
+        stage.setScene(mainScene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+}

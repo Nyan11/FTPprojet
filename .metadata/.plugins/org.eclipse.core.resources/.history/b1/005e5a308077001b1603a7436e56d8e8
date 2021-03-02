@@ -1,0 +1,20 @@
+package cda.projet.serveur.commande;
+
+import java.io.PrintStream;
+
+import cda.projet.serveur.WorkerClient;
+
+public class CommandeLS extends Commande {
+	
+	public CommandeLS((PrintStream ps, String commandeStr, WorkerClient client) {
+		super(ps, commandeStr, client);
+	}
+
+	public void execute() {
+            for(String pathname : CommandExecutor.userPos.list()) {
+                ps.println("1 " + pathname);
+            }
+		ps.println("0");
+	}
+
+}

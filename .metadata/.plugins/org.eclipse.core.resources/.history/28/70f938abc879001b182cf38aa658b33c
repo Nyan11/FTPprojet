@@ -1,0 +1,29 @@
+package cda.ftp.ihm;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import cda.ftp.client.logic.CommFTP;
+import cda.ftp.client.logic.Communicator;
+
+public class FTPinterface {
+	
+	public static CommFTP communicator = null;
+	
+	public static boolean connect(String stringHost, String stringPort) throws UnknownHostException, IOException {
+		int port;
+		try {
+			communicator.closeAll();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		port = Integer.parseInt(stringPort);
+		if(port < 0) {
+			return false;
+		}
+		communicator = new CommFTP(stringHost, port);
+		return true;
+	}
+
+}

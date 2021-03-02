@@ -1,0 +1,79 @@
+package cda.projet.client.logic;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+public class CommTerminalApp extends Communicator {
+
+	public CommTerminalApp(String host, int port) throws UnknownHostException, IOException {
+		super(host, port);
+	}
+
+	@Override
+	public void run() {
+		
+	}
+
+	@Override
+	public void help(String message) throws IOException {
+		System.out.println("Commande inconnue");
+	}
+
+	@Override
+	public void end(String message) throws IOException {
+		ps.println("bye");
+		System.out.println("Communication terminée");
+	}
+
+	@Override
+	public void upload(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void download(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cd(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pwd(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ls(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pass(String message) throws IOException{
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void user(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+	
+	public static String recvMessage() throws IOException {
+		String value = "";
+		do {
+			value = br.readLine();
+			System.out.println(">> " + value);
+		} while(value.charAt(0) == '1');
+		return value;
+	}
+
+}

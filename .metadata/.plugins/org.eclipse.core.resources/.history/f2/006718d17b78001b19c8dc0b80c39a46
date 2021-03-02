@@ -1,0 +1,20 @@
+package cda.ftp.ihm.components;
+
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+
+public class FTPactionView {
+
+	public HBox generateView() {
+		HBox mainBox = new HBox();
+		Button downloadButton = new Button("Download");
+		Button uploadButton = new Button("Upload");
+		
+		mainBox.getChildren().add(uploadButton);
+		mainBox.getChildren().add(downloadButton);
+		mainBox.setAlignment(Pos.BASELINE_RIGHT);
+		
+		return mainBox;
+	}
+}

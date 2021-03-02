@@ -1,0 +1,12 @@
+package cda.projet.serveur;
+
+import java.net.Socket;
+
+public abstract class WorkerRunnable implements Runnable {
+	
+	protected Socket clientSocket = null;
+
+	public WorkerRunnable(Socket socket) {
+		this.clientSocket = socket;
+	}
+}

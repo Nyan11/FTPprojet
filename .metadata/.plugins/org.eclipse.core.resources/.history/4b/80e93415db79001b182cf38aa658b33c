@@ -1,0 +1,97 @@
+package cda.ftp.ihm.components;
+
+import java.util.Collection;
+import java.util.Collections;
+
+import javafx.beans.binding.Bindings;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+public class FTPselectView extends ScrollPane {
+	
+	public TilePane tilePane;
+	
+	private final Background focusBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
+    private final Background unfocusBackground = new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY));
+
+    public FTPselectView() {
+    	super();
+    	generateView();
+    	addIcons(FTPinterface.ls());
+    }
+    
+	private void generateView() {
+		FTPiconView icon1 = new FTPiconView("Documents", true);
+		FTPiconView icon2 = new FTPiconView("Store", false);
+		FTPiconView icon3 = new FTPiconView("poesie.txt", false);
+		FTPiconView icon4 = new FTPiconView("projet.zip", false);
+		FTPiconView icon5 = new FTPiconView("img1.png", false);
+		FTPiconView icon6 = new FTPiconView("img2.png", false);
+		FTPiconView icon7 = new FTPiconView("exec", false);
+		FTPiconView icon8 = new FTPiconView(".pass", false);
+		FTPiconView icon9 = new FTPiconView("frozen.avi", false);
+		
+        tilePane = new TilePane();
+        
+        this.setPadding(new Insets(8, 16, 16, 32));
+        this.fitToWidthProperty().set(true);
+        this.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+        VBox.setVgrow(this, Priority.ALWAYS);
+        
+        this.setContent(tilePane);
+        tilePane.setHgap(16);
+        tilePane.setVgap(16);
+        
+        tilePane.setTileAlignment(Pos.TOP_LEFT);
+        
+
+        tilePane.getChildren().add(icon1);
+        tilePane.getChildren().add(icon2);
+        tilePane.getChildren().add(icon3);
+        tilePane.getChildren().add(icon4);
+        tilePane.getChildren().add(icon5);
+        tilePane.getChildren().add(icon6);
+        tilePane.getChildren().add(icon7);
+        tilePane.getChildren().add(icon8);
+        tilePane.getChildren().add(icon9);
+        
+        boxifyVBoxes();
+	}
+	
+	private void addIcons(Iterable<FTPiconView> icons) {
+		for(FTPiconView icon : icons) {
+			this.tilePane.getChildren().add(icon);
+		}
+		
+	}
+	
+	private void clearIcons() {
+		this.tilePane.getChildren().clear();
+	}
+	
+	private void boxifyVBoxes() {
+        for(Node child : tilePane.getChildren()) {
+        	FTPiconView icon = (FTPiconView) child;
+            // when vbox is clicked focus on it
+        	icon.setOnMouseClicked(e -> {
+        		icon.requestFocus();
+            });
+
+            // use different backgrounds for focused and unfocused states
+        	icon.backgroundProperty().bind(Bindings
+                    .when(icon.focusedProperty())
+                    .then(focusBackground)
+                    .otherwise(unfocusBackground)
+            );
+        }
+    }
+}

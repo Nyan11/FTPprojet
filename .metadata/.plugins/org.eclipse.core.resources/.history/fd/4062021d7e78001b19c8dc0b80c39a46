@@ -1,0 +1,57 @@
+package cda.ftp.ihm.components;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+public class FTPactionView extends HBox {
+	
+	private final static int MIN_WIDTH = 120;
+	public Label downSize;
+	public Label upSize;
+	
+	public FTPactionView() {
+		super();
+		generateView();
+	}
+
+	private void generateView() {
+		HBox buttonsBox = new HBox();
+		Button downloadButton = new Button("Download");
+		Button uploadButton = new Button("Upload");
+		
+		GridPane labelGrid = new GridPane();
+		VBox labelBox = new VBox();
+		HBox downLabBox = new HBox();
+		HBox upLabBox = new HBox();
+		Label downLabel = new Label("Total down : ");
+		Label upLabel = new Label("Total up : ");
+		downSize = new Label("4");
+		upSize = new Label("0");
+		
+		downLabBox.getChildren().addAll(downLabel, downSize);
+		upLabBox.getChildren().addAll(upLabel, upSize);
+		labelBox.getChildren().addAll(downLabBox, upLabBox);
+		labelGrid.add(downLabel, 0, 0);
+		labelGrid.add(upLabel, 0, 1);
+		labelGrid.add(downSize, 1, 0);
+		labelGrid.add(upSize, 1, 1);
+		
+		
+		downloadButton.setMinWidth(MIN_WIDTH);
+		uploadButton.setMinWidth(MIN_WIDTH);
+		
+		buttonsBox.getChildren().add(uploadButton);
+		buttonsBox.getChildren().add(downloadButton);
+		
+		buttonsBox.setAlignment(Pos.BASELINE_RIGHT);
+		buttonsBox.setPadding(new Insets(4));
+		buttonsBox.setSpacing(16);
+		
+		this.getChildren().addAll(labelGrid, buttonsBox);
+	}
+}

@@ -1,0 +1,22 @@
+package cda.ftp.ihm.components.icons;
+
+public enum MimeType {
+	FOLDER(""),
+	IMAGE(""),
+	PACKAGE(""),
+	PDF(""),
+	TEXT(""),
+	VIDEO(""),
+	NO_EXTENSION("");
+	
+	private String path;
+	private final String FULL_PATH = "/ressources/icons/";
+	
+	private MimeType(String path) {
+		this.path = path;
+	}
+	
+	public String getPath() {
+		return MimeType.FULL_PATH + this.path;
+	}
+}

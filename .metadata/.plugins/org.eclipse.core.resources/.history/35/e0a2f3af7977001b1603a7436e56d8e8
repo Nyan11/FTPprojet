@@ -1,0 +1,33 @@
+package cda.projet.serveur;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class LauncherServer {
+
+	protected int          serverPort   = 2121;
+	protected ServerSocket serverSocket = null;
+	protected boolean      isStopped    = false;
+	protected WorkerRunnable  runningThread= null;
+
+	public void start() {
+		Socket clientSocket = null;
+
+		try {
+			serverSocket = new ServerSocket(serverPort);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			while(true) {
+				clientSocket = this.serverSocket.accept();
+				WorkerRunnable test = new WorkerRunnable(clientSocket);
+				new Thread(runningThread).start();
+			}	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

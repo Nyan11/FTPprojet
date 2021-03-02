@@ -1,0 +1,117 @@
+package cda.projet.client.logic;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class CommTerminalApp extends Communicator {
+
+	public CommTerminalApp(String host, int port) throws UnknownHostException, IOException {
+		super(host, port);
+	}
+
+	@Override
+	public void run() {
+		
+	}
+
+	@Override
+	public void help(String message) throws IOException {
+		System.out.println("Commande inconnue");
+	}
+
+	@Override
+	public void end(String message) throws IOException {
+		ps.println("bye");
+		System.out.println("Communication terminée");
+	}
+
+	@Override
+	public void upload(String message) throws IOException {
+		File file;
+		Socket socketFile;
+		BufferedOutputStream bos;
+		FileInputStream fis;
+		BufferedInputStream bis;
+		String recv;
+		
+		file = new File(message.split(" ")[1]);
+		if(!file.exists() || !file.isFile()) {
+			System.out.println("2 le fichier n'existe pas");
+		}
+		
+		ps.println("stor " + file.getName());
+		recv = recvMessage();
+
+		if(recv.charAt(0) == '0') {
+			int port = Integer.parseInt(recv.split(" ")[4]);
+
+			byte[] barray = new byte[(int) file.length()];
+
+			socketFile = new Socket("localhost", port);
+
+			bos = new BufferedOutputStream(socketFile.getOutputStream());
+
+			fis = new FileInputStream(file);
+
+			bis = new BufferedInputStream(fis);
+
+			bis.read(barray, 0, barray.length);
+
+			bos.write(barray);
+			bos.flush();
+			bos.close();
+			socketFile.close();
+		}
+	}
+
+	@Override
+	public void download(String message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cd(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void pwd(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void ls(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void pass(String message) throws IOException{
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void user(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+	
+	public static String recvMessage() throws IOException {
+		String value = "";
+		do {
+			value = br.readLine();
+			System.out.println(">> " + value);
+		} while(value.charAt(0) == '1');
+		return value;
+	}
+
+}

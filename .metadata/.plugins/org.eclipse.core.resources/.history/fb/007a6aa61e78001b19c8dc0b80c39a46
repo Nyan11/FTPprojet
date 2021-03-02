@@ -1,0 +1,19 @@
+package cda.ftp.ihm.components;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+
+public class FTPdirView {
+	public VBox generateView() {
+		VBox mainBox = new VBox();
+		TextField currentPath = new TextField();
+		Button previousButton = new Button("←");
+		
+		mainBox.getChildren().add(currentPath);
+		mainBox.getChildren().add(previousButton);
+		
+		return mainBox;
+	}
+
+}

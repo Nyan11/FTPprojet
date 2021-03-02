@@ -1,0 +1,14 @@
+/*
+ * TP JAVA RIP
+ * Min Serveur FTP
+ * */
+package cda.projet.serveur;
+
+
+public class Main {
+
+	public static void main(String[] args) throws IOException{
+		System.out.println("Le Serveur FTP");
+	}
+		
+}

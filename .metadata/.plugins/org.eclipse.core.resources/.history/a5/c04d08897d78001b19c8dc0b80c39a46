@@ -1,0 +1,20 @@
+package cda.ftp.ihm.components;
+
+import javafx.scene.layout.VBox;
+
+public class AppView {
+
+	public VBox generateView() {
+        FTPdirView dir = new FTPdirView();
+        FTPmenuView menu = new FTPmenuView();
+        FTPactionView action = new FTPactionView();
+        FTPselectView select = new FTPselectView();
+        
+        VBox main = new VBox();
+        main.getChildren().add(menu.generateView());
+        main.getChildren().add(dir.generateView());
+        main.getChildren().add(select.generateView());
+        main.getChildren().add(action.generateView());
+        return main;
+	}
+}

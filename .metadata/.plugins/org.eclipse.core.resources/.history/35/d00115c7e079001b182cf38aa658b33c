@@ -1,0 +1,28 @@
+package cda.ftp.ihm.components;
+
+
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+
+public class FTPdirView extends HBox {
+	
+	public FTPdirView() {
+		super();
+		generateView();
+	}
+	
+	public void generateView() {
+		TextField currentPath = new TextField();
+		Button previousButton = new Button("←");
+		
+		this.getChildren().add(previousButton);
+		this.getChildren().add(currentPath);
+		this.setPadding(new Insets(4, 16, 4, 16));
+		this.setSpacing(16);
+		HBox.setHgrow(currentPath, Priority.ALWAYS);
+	}
+
+}

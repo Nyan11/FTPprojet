@@ -1,0 +1,29 @@
+package cda.projet.serveur;
+
+import java.io.PrintStream;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
+public class CommandeUSER extends Commande {
+	
+        File fs;
+
+	public CommandeUSER(PrintStream ps, String commandeStr) {
+		super(ps, commandeStr);
+                this.fs = new File("users");
+	}
+
+	public void execute() {
+		if(Arrays.asList(fs.list()).contains(commandeArgs[0].toLowerCase())) {
+			CommandExecutor.userOk = true;
+                        CommandExecutor.userHome = new File(fs, commandeArgs[0].toLowerCase());
+			ps.println("0 Commande user OK");
+		}
+		else {
+			ps.println("2 Le user " + commandeArgs[0] + " n'existe pas");
+		}
+	
+	}
+
+}

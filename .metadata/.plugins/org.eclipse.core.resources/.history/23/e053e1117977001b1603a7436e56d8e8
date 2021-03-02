@@ -1,0 +1,5 @@
+package cda.projet.serveur;
+
+public abstract class WorkerRunnable {
+
+}

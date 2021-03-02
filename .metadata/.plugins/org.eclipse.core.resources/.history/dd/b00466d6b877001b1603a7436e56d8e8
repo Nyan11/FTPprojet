@@ -1,0 +1,75 @@
+package cda.projet.client.logic;
+
+import java.io.IOException;
+
+public class CommTerminalApp extends Communicator {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void help(String message) {
+		System.out.println("Commande inconnue");
+	}
+
+	@Override
+	public void end(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void upload(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void download(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cd(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pwd(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ls(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pass(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void user(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static String recvMessage() throws IOException {
+		String value = "";
+		do {
+			value = br.readLine();
+			System.out.println(">> " + value);
+		} while(value.charAt(0) == '1');
+		return value;
+	}
+
+}

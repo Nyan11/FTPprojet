@@ -1,0 +1,5 @@
+package cda.ftp.client.logic;
+
+public class CommFTP {
+
+}

@@ -1,0 +1,68 @@
+package cda.ftp.client.logic;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+public class CommFTP extends Communicator {
+
+	public CommFTP(String host, int port) throws UnknownHostException, IOException {
+		super(host, port);
+	}
+
+	@Override
+	public boolean help(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean end(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean upload(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean download(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean cd(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean pwd(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean ls(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean pass(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean user(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+
+}

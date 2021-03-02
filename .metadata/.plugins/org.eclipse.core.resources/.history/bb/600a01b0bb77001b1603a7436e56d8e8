@@ -1,0 +1,156 @@
+package cda.projet.client.logic;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class CommTerminalApp extends Communicator {
+
+	private String host;
+
+	public CommTerminalApp(String host, int port) throws UnknownHostException, IOException {
+		super(host, port);
+		this.host = host;
+	}
+
+	@Override
+	public void run() {
+		
+	}
+
+	@Override
+	public void help(String message) throws IOException {
+		System.out.println("Commande inconnue");
+	}
+
+	@Override
+	public void end(String message) throws IOException {
+		ps.println("bye");
+		System.out.println("Communication terminée");
+	}
+
+	@Override
+	public void upload(String message) throws IOException {
+		File file;
+		Socket socketFile;
+		BufferedOutputStream bos;
+		BufferedInputStream bis;
+		String recv;
+		
+		int port;
+		byte[] barray;
+		
+		file = new File(message.split(" ")[1]);
+		if(!file.exists() || !file.isFile()) {
+			System.out.println("2 le fichier n'existe pas");
+		}
+		
+		ps.println("stor " + file.getName());
+		recv = recvMessage();
+
+		if(recv.charAt(0) == '0') {
+			port = Integer.parseInt(recv.split(" ")[4]);
+			barray = new byte[(int) file.length()];
+
+			socketFile = new Socket(this.host, port);
+
+			bos = new BufferedOutputStream(socketFile.getOutputStream());
+			bis = new BufferedInputStream(new FileInputStream(file));
+
+			bis.read(barray, 0, barray.length);
+
+			bos.write(barray);
+			bos.flush();
+			bos.close();
+			socketFile.close();
+		}
+	}
+
+	@Override
+	public void download(String message) throws IOException {
+		Socket socketFile;
+		InputStream is;
+		ByteArrayOutputStream baos;
+		BufferedOutputStream bos;
+		String recv;
+		
+		int port;
+		byte[] barray;
+		int bytesRead;
+		
+		ps.println(message);
+		recv = recvMessage();
+		
+		if(recv.charAt(0) == '0') {
+			port = Integer.parseInt(recv.split(" ")[4]);
+			barray = new byte[1];
+
+			socketFile = new Socket("localhost", port);
+			is = socketFile.getInputStream();
+
+			baos = new ByteArrayOutputStream();
+
+			bos = new BufferedOutputStream(new FileOutputStream(message.split(" ")[1]));
+
+			bytesRead = is.read(barray, 0, barray.length);
+
+			do {
+				baos.write(barray);
+				bytesRead = is.read(barray);
+			} while (bytesRead != -1);
+
+			bos.write(baos.toByteArray());
+			bos.flush();
+			bos.close();
+			baos.close();
+			socketFile.close();
+		}
+	}
+
+	@Override
+	public void cd(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void pwd(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void ls(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void pass(String message) throws IOException{
+		ps.println(message);
+		recvMessage();
+	}
+
+	@Override
+	public void user(String message) throws IOException {
+		ps.println(message);
+		recvMessage();
+	}
+	
+	public static String recvMessage() throws IOException {
+		String value = "";
+		do {
+			value = br.readLine();
+			System.out.println(">> " + value);
+		} while(value.charAt(0) == '1');
+		return value;
+	}
+
+}

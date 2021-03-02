@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
+    <fullyQualifiedTypeName name="java.io.BufferedOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+    <fullyQualifiedTypeName name="java.net.Socket"/>
+    <fullyQualifiedTypeName name="cda.projet.serveur.commande.CommandExecutor"/>
+    <fullyQualifiedTypeName name="cda.projet.serveur.WorkerClient"/>
+    <fullyQualifiedTypeName name="cda.projet.serveur.specials.Uploader"/>
+    <fullyQualifiedTypeName name="cda.projet.serveur.specials.Downloader"/>
+    <fullyQualifiedTypeName name="cda.projet.client.logic.CommTerminalApp"/>
+    <fullyQualifiedTypeName name="java.net.SocketException"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
+    <fullyQualifiedTypeName name="javafx.geometry.Insets"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.Font"/>
+    <fullyQualifiedTypeName name="javafx.scene.text.FontWeight"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.Priority"/>
+    <fullyQualifiedTypeName name="javafx.geometry.Pos"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.PasswordField"/>
+    <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+    <fullyQualifiedTypeName name="cda.ftp.client.logic.Communicator"/>
+    <fullyQualifiedTypeName name="cda.ftp.client.logic.CommFTP"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.App"/>
+    <fullyQualifiedTypeName name="javafx.stage.Stage"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="javafx.util.Pair"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPiconView"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.FTPinterface"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPselectView"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPdirView"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="javafx.stage.DirectoryChooser"/>
+</qualifiedTypeNameHistroy>

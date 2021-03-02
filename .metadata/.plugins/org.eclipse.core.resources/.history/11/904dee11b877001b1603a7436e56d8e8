@@ -1,0 +1,61 @@
+package cda.projet.client.logic;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+
+public abstract class Communicator implements Runnable{
+	
+	static Socket socket;
+	static BufferedReader br;
+	static PrintStream ps;
+	
+	public Communicator(String host, int port) {
+		this.socket = new Socket(host, port);
+		this.br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		this.ps = new PrintStream(socket.getOutputStream());
+	}
+	
+	public void sendMessage(String message) throws IOException {
+		if(message.equals("bye")) {
+			end(message);
+		} else if(message.startsWith("user ")) {
+			user(message);
+		} else if(message.startsWith("pass ")) {
+			pass(message);
+		} else if(message.equals("ls")) {
+			ls(message);
+		} else if(message.equals("pwd")) {
+			pwd(message);
+		} else if(message.startsWith("cd ")) {
+			cd(message);
+		} else if(message.startsWith("get ")) {
+			download(message);
+		} else if(message.startsWith("stor ")) {
+			upload(message);
+		} else {
+			help(message);
+		}
+	}
+	
+	public abstract void help(String message);
+	
+	public abstract void end(String message);
+
+	public abstract void upload(String message);
+	
+	public abstract void download(String message);
+	
+	public abstract void cd(String message);
+	
+	public abstract void pwd(String message);
+	
+	public abstract void ls(String message);
+	
+	public abstract void pass(String message);
+	
+	public abstract void user(String message);
+	
+}
