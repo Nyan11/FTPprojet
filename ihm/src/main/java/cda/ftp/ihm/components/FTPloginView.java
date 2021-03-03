@@ -10,6 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD
+=======
+import javafx.scene.control.TextFormatter;
+>>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -117,6 +121,11 @@ public class FTPloginView extends VBox {
 		passField = new PasswordField();
 
 		loginButton = new Button("Log In");
+<<<<<<< HEAD
+=======
+		
+		//portField.setTextFormatter(TextFormatter.);
+>>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 
 		this.getChildren().addAll(titleBox, credentialBox);
 		credentialBox.getChildren().addAll(connectBox, userBox, passBox, buttonBox);
@@ -152,5 +161,9 @@ public class FTPloginView extends VBox {
 		buttonBox.setAlignment(Pos.CENTER);
 		VBox.setVgrow(buttonBox, Priority.ALWAYS);
 		VBox.setVgrow(credentialBox, Priority.ALWAYS);
+<<<<<<< HEAD
+=======
+		
+>>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 	}
 }
