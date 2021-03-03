@@ -1,11 +1,6 @@
 package cda.ftp.ihm.components;
 
 import cda.ftp.ihm.components.icons.IconsUtils;
-<<<<<<< HEAD
-=======
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ObservableBooleanValue;
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,10 +13,6 @@ public class FTPiconView extends VBox {
 	public static final int ICON_SIZE = 96;
 	private String fileName;
 	private boolean dir;
-<<<<<<< HEAD
-=======
-	//public BooleanProperty hover;
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 	
 	public FTPiconView(String name, boolean dir){
 		super();

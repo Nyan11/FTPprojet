@@ -14,7 +14,6 @@ import cda.ftp.ihm.components.FTPdirView;
 import cda.ftp.ihm.components.FTPiconView;
 import cda.ftp.ihm.components.FTPselectView;
 import javafx.scene.Scene;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -32,9 +31,10 @@ public class FTPinterface {
 	private static FTPdirView dirView;
 	
 	
+	@SuppressWarnings("exports")
 	public FTPinterface(FTPselectView selectView, FTPdirView dirView) {
-		this.selectView = selectView;
-		this.dirView = dirView;
+		FTPinterface.selectView = selectView;
+		FTPinterface.dirView = dirView;
 	}
 
 	public static boolean connect(String stringHost, String stringPort) throws UnknownHostException, IOException {
@@ -140,13 +140,8 @@ public class FTPinterface {
 	}
 
 	public static void download(String path) {
-<<<<<<< HEAD
 		FileChooser fileChooser = new FileChooser();
 		File selectedFile = fileChooser.showSaveDialog(new Stage());
-=======
-		DirectoryChooser fileChooser = new DirectoryChooser();
-		File selectedFile = fileChooser.showDialog(new Stage());
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 		if(selectedFile != null) {
 			try {
 				FTPinterface.communicator.downloadBis("get " + path, selectedFile, FTPinterface.host);
@@ -157,7 +152,7 @@ public class FTPinterface {
 			}
 		}
 	}
-<<<<<<< HEAD
+
 	public static void upload() {
 		FileChooser fileChooser = new FileChooser();
 		File selectedFile = fileChooser.showOpenDialog(new Stage());
@@ -170,6 +165,4 @@ public class FTPinterface {
 			}
 		}
 	}
-=======
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 }

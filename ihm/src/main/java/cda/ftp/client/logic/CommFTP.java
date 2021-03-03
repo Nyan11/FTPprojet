@@ -27,7 +27,6 @@ public class CommFTP extends Communicator {
 		return false;
 	}
 
-<<<<<<< HEAD
 	public boolean uploadBis(String message, File file, String hostName) throws IOException {
 		String recv;
 		int port;
@@ -52,20 +51,6 @@ public class CommFTP extends Communicator {
 		String recv;
 		int port;
 		
-=======
-	@Override
-	public boolean upload(String message) throws IOException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean downloadBis(String message, File directory, String hostName) throws IOException {
-		File file;
-		String recv;
-		int port;
-		
-		file = new File(directory, message.split(" ")[1]);
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 		if(file.exists() && file.isFile()) {
 			System.out.println("Le fichier existe deja");
 			return false;
@@ -76,11 +61,7 @@ public class CommFTP extends Communicator {
 
 		if(recv.charAt(0) == '0') {
 			port = Integer.parseInt(recv.split(" ")[4]);
-<<<<<<< HEAD
 			new Thread(new Downloader(file, message.split(" ")[1], hostName, port)).start();
-=======
-			new Thread(new Downloader(directory, message.split(" ")[1], hostName, port)).start();
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 		}
 		return true;
 	}
@@ -169,13 +150,10 @@ public class CommFTP extends Communicator {
 		// TODO Auto-generated method stub
 		return false;
 	}
-<<<<<<< HEAD
-
+	
 	@Override
 	public boolean upload(String message) throws IOException {
 		// TODO Auto-generated method stub
 		return false;
 	}
-=======
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 }

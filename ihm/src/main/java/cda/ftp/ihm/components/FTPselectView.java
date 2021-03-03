@@ -4,10 +4,6 @@ import java.util.List;
 
 import cda.ftp.ihm.FTPinterface;
 import javafx.beans.binding.Bindings;
-<<<<<<< HEAD
-=======
-import javafx.beans.value.ObservableValue;
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -23,18 +19,11 @@ import javafx.scene.paint.Color;
 public class FTPselectView extends ScrollPane {
 
 	public TilePane tilePane;
-<<<<<<< HEAD
 	
 	private final CornerRadii bgRadius = new CornerRadii(3);
 
 	private final Background hoverBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE.interpolate(Color.WHITE, 0.7), bgRadius, Insets.EMPTY));
 	private final Background focusBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE, bgRadius, Insets.EMPTY));
-=======
-
-	private final CornerRadii bgRadius = new CornerRadii(3);
-	private final Background focusBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE, bgRadius, Insets.EMPTY));
-	private final Background hoverBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE.interpolate(Color.WHITE, 0.7), bgRadius, Insets.EMPTY));
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 	private final Background unfocusBackground = new Background(new BackgroundFill(Color.TRANSPARENT, bgRadius, Insets.EMPTY));
 
 	public FTPselectView() {
@@ -57,11 +46,6 @@ public class FTPselectView extends ScrollPane {
 		tilePane.setVgap(16);
 
 		tilePane.setTileAlignment(Pos.TOP_LEFT);
-<<<<<<< HEAD
-=======
-		tilePane.setMouseTransparent(false);
-		this.setMouseTransparent(false);
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 	}
 
 	public void updateView() {
@@ -96,11 +80,7 @@ public class FTPselectView extends ScrollPane {
 				}
 			});
 
-<<<<<<< HEAD
 			// use different backgrounds for hover, focused and unfocused states
-=======
-			// use different backgrounds for focused and unfocused states			
->>>>>>> dee033c1cdfbdbd4932a88717ae176f9cea8b62a
 			icon.backgroundProperty().bind(Bindings
 					.when(icon.focusedProperty())
 					.then(focusBackground)
