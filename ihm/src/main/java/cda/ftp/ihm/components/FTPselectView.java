@@ -19,9 +19,12 @@ import javafx.scene.paint.Color;
 public class FTPselectView extends ScrollPane {
 
 	public TilePane tilePane;
+	
+	private final CornerRadii bgRadius = new CornerRadii(3);
 
-	private final Background focusBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
-	private final Background unfocusBackground = new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY));
+	private final Background hoverBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE.interpolate(Color.WHITE, 0.7), bgRadius, Insets.EMPTY));
+	private final Background focusBackground = new Background(new BackgroundFill(Color.LIGHTSKYBLUE, bgRadius, Insets.EMPTY));
+	private final Background unfocusBackground = new Background(new BackgroundFill(Color.TRANSPARENT, bgRadius, Insets.EMPTY));
 
 	public FTPselectView() {
 		super();
@@ -77,11 +80,14 @@ public class FTPselectView extends ScrollPane {
 				}
 			});
 
-			// use different backgrounds for focused and unfocused states
+			// use different backgrounds for hover, focused and unfocused states
 			icon.backgroundProperty().bind(Bindings
 					.when(icon.focusedProperty())
 					.then(focusBackground)
-					.otherwise(unfocusBackground)
+					.otherwise(Bindings
+							.when(icon.hoverProperty())
+							.then(hoverBackground)
+							.otherwise(unfocusBackground))
 					);
 		}
 	}

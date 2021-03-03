@@ -140,14 +140,26 @@ public class FTPinterface {
 	}
 
 	public static void download(String path) {
-		DirectoryChooser fileChooser = new DirectoryChooser();
-		File selectedFile = fileChooser.showDialog(new Stage());
+		FileChooser fileChooser = new FileChooser();
+		File selectedFile = fileChooser.showSaveDialog(new Stage());
 		if(selectedFile != null) {
 			try {
 				FTPinterface.communicator.downloadBis("get " + path, selectedFile, FTPinterface.host);
 				selectView.updateView();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	public static void upload() {
+		FileChooser fileChooser = new FileChooser();
+		File selectedFile = fileChooser.showOpenDialog(new Stage());
+		if(selectedFile != null) {
+			try {
+				FTPinterface.communicator.downloadBis("stor " + selectedFile.getName(), selectedFile, FTPinterface.host);
+				selectView.updateView();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

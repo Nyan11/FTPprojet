@@ -27,18 +27,30 @@ public class CommFTP extends Communicator {
 		return false;
 	}
 
-	@Override
-	public boolean upload(String message) throws IOException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean uploadBis(String message, File file, String hostName) throws IOException {
+		String recv;
+		int port;
+
+		file = new File(message.split(" ")[1]);
+		if(!file.exists() || !file.isFile()) {
+			System.out.println("Le fichier n'existe pas");
+			return false;
+		}
+
+		ps.println("stor " + file.getName());
+		recv = recvMessage();
+
+		if(recv.charAt(0) == '0') {
+			port = Integer.parseInt(recv.split(" ")[4]);
+			new Thread(new Uploader(file, hostName, port)).start();
+		}
+		return true;
 	}
 
-	public boolean downloadBis(String message, File directory, String hostName) throws IOException {
-		File file;
+	public boolean downloadBis(String message, File file, String hostName) throws IOException {
 		String recv;
 		int port;
 		
-		file = new File(directory, message.split(" ")[1]);
 		if(file.exists() && file.isFile()) {
 			System.out.println("Le fichier existe deja");
 			return false;
@@ -49,7 +61,7 @@ public class CommFTP extends Communicator {
 
 		if(recv.charAt(0) == '0') {
 			port = Integer.parseInt(recv.split(" ")[4]);
-			new Thread(new Downloader(directory, message.split(" ")[1], hostName, port)).start();
+			new Thread(new Downloader(file, message.split(" ")[1], hostName, port)).start();
 		}
 		return true;
 	}
@@ -135,6 +147,12 @@ public class CommFTP extends Communicator {
 
 	@Override
 	public boolean download(String message) throws IOException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean upload(String message) throws IOException {
 		// TODO Auto-generated method stub
 		return false;
 	}

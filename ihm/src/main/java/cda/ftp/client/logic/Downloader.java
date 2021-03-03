@@ -10,13 +10,13 @@ import java.net.Socket;
 
 public class Downloader implements Runnable {
 
-	protected File local;
+	protected File file;
 	protected String filePath;
 	protected String host;
 	protected int port;
 
 	public Downloader(File local, String filePath, String host, int port) {
-		this.local = local;
+		this.file = local;
 		this.filePath = filePath;
 		this.host = host;
 		this.port = port;
@@ -24,7 +24,6 @@ public class Downloader implements Runnable {
 
 	@Override
 	public void run() {
-		File file;
 		Socket socketFile;
 		InputStream is;
 		ByteArrayOutputStream baos;
@@ -40,8 +39,6 @@ public class Downloader implements Runnable {
 			is = socketFile.getInputStream();
 
 			baos = new ByteArrayOutputStream();
-
-			file = new File(local, filePath);
 			
 			bos = new BufferedOutputStream(new FileOutputStream(file));
 			
