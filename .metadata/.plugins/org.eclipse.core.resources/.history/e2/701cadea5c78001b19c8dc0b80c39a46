@@ -1,5 +1,0 @@
-module cda.ftp.ihm {
-    requires javafx.controls;
-	requires javafx.graphics;
-    exports cda.ftp.ihm;
-}
