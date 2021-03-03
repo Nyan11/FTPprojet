@@ -1,5 +1,6 @@
 package cda.ftp.ihm.components;
 
+import cda.ftp.ihm.FTPinterface;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -54,5 +55,11 @@ public class FTPactionView extends HBox {
 		buttonsBox.setSpacing(16);
 		
 		this.getChildren().add(labelGrid);
+		
+		uploadButton.setOnAction(e -> {
+			FTPinterface.upload();
+		});
 	}
+	
+	
 }

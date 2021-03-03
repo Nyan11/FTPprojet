@@ -145,9 +145,8 @@ public class FTPinterface {
 		if(selectedFile != null) {
 			try {
 				FTPinterface.communicator.downloadBis("get " + path, selectedFile, FTPinterface.host);
-				selectView.updateView();
+				//selectView.updateView();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -158,8 +157,8 @@ public class FTPinterface {
 		File selectedFile = fileChooser.showOpenDialog(new Stage());
 		if(selectedFile != null) {
 			try {
-				FTPinterface.communicator.downloadBis("stor " + selectedFile.getName(), selectedFile, FTPinterface.host);
-				selectView.updateView();
+				FTPinterface.communicator.uploadBis("stor " + selectedFile.getName(), selectedFile, FTPinterface.host);
+				//selectView.updateView();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -31,7 +31,6 @@ public class CommFTP extends Communicator {
 		String recv;
 		int port;
 
-		file = new File(message.split(" ")[1]);
 		if(!file.exists() || !file.isFile()) {
 			System.out.println("Le fichier n'existe pas");
 			return false;

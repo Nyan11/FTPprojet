@@ -33,10 +33,11 @@
     <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPiconView"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="cda.ftp.ihm.FTPinterface"/>
     <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPselectView"/>
     <fullyQualifiedTypeName name="cda.ftp.ihm.components.FTPdirView"/>
     <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="javafx.stage.DirectoryChooser"/>
+    <fullyQualifiedTypeName name="cda.ftp.ihm.FTPinterface"/>
+    <fullyQualifiedTypeName name="javafx.concurrent.Task"/>
 </qualifiedTypeNameHistroy>
