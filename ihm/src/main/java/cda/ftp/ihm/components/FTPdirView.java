@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class FTPdirView extends HBox implements Runnable {
+public class FTPdirView extends HBox {
 	
 	TextField currentPath;
 	Button previousButton;
@@ -30,6 +30,9 @@ public class FTPdirView extends HBox implements Runnable {
 		this.setPadding(new Insets(4, 16, 4, 16));
 		this.setSpacing(16);
 		HBox.setHgrow(currentPath, Priority.ALWAYS);
+		
+		currentPath.setEditable(false);
+		currentPath.setFocusTraversable(true);
 	}
 	
 	public void updateView() {
@@ -42,11 +45,4 @@ public class FTPdirView extends HBox implements Runnable {
 			FTPinterface.cd("..");
 		});
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
