@@ -127,16 +127,29 @@ public class CommFTP extends Communicator {
 	
 	public static String recvLs() throws IOException {
 		String value = "";
-		Set<Pair<String, Boolean>> lsValue = new HashSet<Pair<String, Boolean>>();
-		String name = "";
+		Set<Pair<String, Pair<Boolean, Long>>> lsValue = new HashSet<Pair<String, Pair<Boolean, Long>>>();
+		Pair<Boolean, Long> type;
+		String[] names;
+		String fullName = "";
 		boolean dir = false;
 		do {
 			value = br.readLine();
 			System.out.println(">> " + value);
 			if(value.startsWith("1")) {
-				name = value.split(" ")[1];
-				dir = value.split(" ")[2].equals("dir");
-				lsValue.add(new Pair<String, Boolean>(name, dir));
+				names = value.split(" ");
+				dir = names[names.length - 1].equals("dir");
+				fullName = value.substring(2, value.length() - names[names.length - 1].length() - 1);
+				for(int i = 2; i < names.length - 1; i++) {
+					fullName += " " + names[i];
+				}
+				if(dir) {
+					type = new Pair<Boolean, Long>(true, 0l);
+				}
+				else {
+					type = new Pair<Boolean, Long>(false, Long.valueOf(names[names.length - 1]));
+				}
+				lsValue.add(new Pair<String, Pair<Boolean, Long>>(fullName, type));
+				
 			}
 			
 		} while(value.charAt(0) == '1');

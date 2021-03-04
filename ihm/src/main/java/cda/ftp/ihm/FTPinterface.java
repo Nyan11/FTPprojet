@@ -13,6 +13,7 @@ import cda.ftp.ihm.components.FTPappView;
 import cda.ftp.ihm.components.FTPdirView;
 import cda.ftp.ihm.components.FTPiconView;
 import cda.ftp.ihm.components.FTPselectView;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -22,14 +23,13 @@ public class FTPinterface {
 
 	@SuppressWarnings("exports")
 	public static CommFTP communicator = null;
-	public static Set<Pair<String, Boolean>> lsValue = null;
+	public static Set<Pair<String, Pair<Boolean, Long>>> lsValue = null;
 	public static String pwdValue = null;
 	public static String currentFile;
 	public static String host;
 	
 	private static FTPselectView selectView;
 	private static FTPdirView dirView;
-	
 	
 	@SuppressWarnings("exports")
 	public FTPinterface(FTPselectView selectView, FTPdirView dirView) {
@@ -97,7 +97,7 @@ public class FTPinterface {
 		try {
 			FTPinterface.communicator.sendMessage("ls");
 			lsValue.forEach(pair -> {
-				result.add(new FTPiconView(pair.getKey(), pair.getValue()));
+				result.add(new FTPiconView(pair.getKey(), pair.getValue().getKey(), pair.getValue().getValue()));
 			});
 			sortedResult = result.stream().sorted((f1, f2) -> {
 				if(f1.isDir() && ! f2.isDir()) {
@@ -139,12 +139,15 @@ public class FTPinterface {
 		dirView.updateView();
 	}
 
-	public static void download(String path) {
+	public static void download() {
+		if(FTPinterface.currentFile.equals("")) {
+			return;
+		}
 		FileChooser fileChooser = new FileChooser();
 		File selectedFile = fileChooser.showSaveDialog(new Stage());
 		if(selectedFile != null) {
 			try {
-				FTPinterface.communicator.downloadBis("get " + path, selectedFile, FTPinterface.host);
+				FTPinterface.communicator.downloadBis("get " + FTPinterface.currentFile, selectedFile, FTPinterface.host);
 				//selectView.updateView();
 			} catch (IOException e) {
 				e.printStackTrace();

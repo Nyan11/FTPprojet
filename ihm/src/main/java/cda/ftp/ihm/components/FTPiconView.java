@@ -13,11 +13,13 @@ public class FTPiconView extends VBox {
 	public static final int ICON_SIZE = 96;
 	private String fileName;
 	private boolean dir;
+	private long size;
 	
-	public FTPiconView(String name, boolean dir){
+	public FTPiconView(String name, boolean dir, long size){
 		super();
 		this.fileName = name;
 		this.dir = dir;
+		this.size = size;
 		generateView();
 	}
 	
@@ -36,6 +38,10 @@ public class FTPiconView extends VBox {
 	
 	public String getName() {
 		return this.fileName;
+	}
+	
+	public long getSize() {
+		return this.size;
 	}
 	
 	public boolean isDir() {

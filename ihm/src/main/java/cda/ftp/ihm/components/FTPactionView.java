@@ -14,8 +14,8 @@ import javafx.scene.layout.Priority;
 public class FTPactionView extends HBox {
 	
 	private final static int MIN_WIDTH = 120;
-	public Label downSize;
-	public Label upSize;
+	private static Label name;
+	private static Label info;
 	
 	public FTPactionView() {
 		super();
@@ -29,16 +29,12 @@ public class FTPactionView extends HBox {
 		
 		GridPane labelGrid = new GridPane();
 
-		Label downLabel = new Label("Total down : ");
-		Label upLabel = new Label("Total up : ");
-		downSize = new Label("0");
-		upSize = new Label("0");
+		name = new Label("");
+		info = new Label("");
 		
-		labelGrid.add(downLabel, 0, 0);
-		labelGrid.add(upLabel, 0, 1);
-		labelGrid.add(downSize, 1, 0);
-		labelGrid.add(upSize, 1, 1);
-		labelGrid.add(buttonsBox, 2, 0, 1, 2);
+		labelGrid.add(name, 0, 0);
+		labelGrid.add(info, 0, 1);
+		labelGrid.add(buttonsBox, 1, 0, 1, 2);
 		
 		labelGrid.setPadding(new Insets(4, 8, 4, 8));
 		HBox.setHgrow(labelGrid, Priority.ALWAYS);
@@ -57,8 +53,34 @@ public class FTPactionView extends HBox {
 		this.getChildren().add(labelGrid);
 		
 		uploadButton.setOnAction(e -> {
+			FTPinterface.download();
+		});
+		
+		uploadButton.setOnAction(e -> {
 			FTPinterface.upload();
 		});
+	}
+	
+	public static void setName(String name) {
+		FTPactionView.name.setText(name);
+	}
+	
+	public static void setFolder() {
+		FTPactionView.info.setText("Dossier");
+	}
+	
+	public static void setSize(long size) {
+		double returnSize = size;
+		String[] unit = {"o", "ko", "Mo", "Go", "To"};
+		int i = 0;
+		String number;
+		while(returnSize/1000 > 1) {
+			i++;
+			returnSize = returnSize/1000;
+		}
+		number = String.valueOf(returnSize);
+		number = (number.length() > 7) ? number.substring(0, 7): number;
+		FTPactionView.info.setText(number + " " + unit[i]);
 	}
 	
 	

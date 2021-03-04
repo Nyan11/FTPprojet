@@ -2,6 +2,7 @@ package cda.projet.serveur.commande;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 import cda.projet.serveur.WorkerClient;
 import cda.projet.serveur.specials.Downloader;

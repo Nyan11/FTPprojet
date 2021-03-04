@@ -33,7 +33,6 @@ public class FTPdirView extends HBox implements Runnable {
 	}
 	
 	public void updateView() {
-		//currentPath.textProperty().bind(observable);
 		this.path = FTPinterface.pwd();
 		this.currentPath.setText(this.path);
 	}

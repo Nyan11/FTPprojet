@@ -71,12 +71,17 @@ public class FTPselectView extends ScrollPane {
 				FTPinterface.currentFile = "";
 				if(icon.isFocused() && icon.isDir()) {
 					accessDir(icon);
-				} else if(icon.isFocused() && !icon.isDir()) {
-					downloadFile(icon);
-				}
-				else {
-					FTPinterface.currentFile = icon.getName();
+				} else if(!icon.isFocused()) {
 					icon.requestFocus();
+					FTPactionView.setName(icon.getName());
+					if(icon.isDir()) {
+						FTPinterface.currentFile = "";
+						FTPactionView.setFolder();
+					}
+					else {
+						FTPinterface.currentFile = icon.getName();
+						FTPactionView.setSize(icon.getSize());
+					}
 				}
 			});
 
@@ -97,7 +102,7 @@ public class FTPselectView extends ScrollPane {
 	}
 	
 	private void downloadFile(FTPiconView icon) {
-		FTPinterface.download(icon.getName());
+		FTPinterface.download();
 	}
 
 	/* to desactivate the focus on the app, really hacky */
