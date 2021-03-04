@@ -94,8 +94,12 @@ public class CommTerminalApp extends Communicator {
 	@Override
 	public boolean cd(String message) throws IOException {
 		ps.println(message);
-		recvMessage();
-		return true;
+		if(recvMessage().startsWith("2 ")) {
+			return false;
+		}
+		else {
+			return true;	
+		}
 	}
 
 	@Override

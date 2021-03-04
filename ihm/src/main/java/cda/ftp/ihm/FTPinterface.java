@@ -9,11 +9,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import cda.ftp.client.logic.CommFTP;
+import cda.ftp.ihm.components.FTPactionView;
 import cda.ftp.ihm.components.FTPappView;
 import cda.ftp.ihm.components.FTPdirView;
 import cda.ftp.ihm.components.FTPiconView;
 import cda.ftp.ihm.components.FTPselectView;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -29,13 +29,8 @@ public class FTPinterface {
 	public static String host;
 	
 	private static FTPselectView selectView;
+	private static FTPactionView actionView;
 	private static FTPdirView dirView;
-	
-	@SuppressWarnings("exports")
-	public FTPinterface(FTPselectView selectView, FTPdirView dirView) {
-		FTPinterface.selectView = selectView;
-		FTPinterface.dirView = dirView;
-	}
 
 	public static boolean connect(String stringHost, String stringPort) throws UnknownHostException, IOException {
 		int port;
@@ -85,6 +80,7 @@ public class FTPinterface {
 		
 		FTPinterface.selectView = app.select;
 		FTPinterface.dirView = app.dir;
+		FTPinterface.actionView = app.action;
 
 		stage.setScene(mainScene);
 		stage.show();
@@ -137,6 +133,8 @@ public class FTPinterface {
 	public static void updateApp() {
 		selectView.updateView();
 		dirView.updateView();
+		actionView.updateView();
+		FTPinterface.currentFile = "";
 	}
 
 	public static void download() {
@@ -148,7 +146,6 @@ public class FTPinterface {
 		if(selectedFile != null) {
 			try {
 				FTPinterface.communicator.downloadBis("get " + FTPinterface.currentFile, selectedFile, FTPinterface.host);
-				//selectView.updateView();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

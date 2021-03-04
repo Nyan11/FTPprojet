@@ -101,9 +101,11 @@ public class FTPselectView extends ScrollPane {
 		FTPinterface.cd(icon.getName());
 	}
 	
+	/*
 	private void downloadFile(FTPiconView icon) {
 		FTPinterface.download();
 	}
+	*/
 
 	/* to desactivate the focus on the app, really hacky */
 	public void requestFocus() { }

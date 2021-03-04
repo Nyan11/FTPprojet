@@ -4,7 +4,6 @@ import cda.ftp.ihm.FTPinterface;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -81,6 +80,15 @@ public class FTPactionView extends HBox {
 		number = String.valueOf(returnSize);
 		number = (number.length() > 7) ? number.substring(0, 7): number;
 		FTPactionView.info.setText(number + " " + unit[i]);
+	}
+	
+	public static void clearText() {
+		FTPactionView.name.setText("");
+		FTPactionView.info.setText("");
+	}
+
+	public void updateView() {
+		clearText();
 	}
 	
 	
