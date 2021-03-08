@@ -1,4 +1,4 @@
-package cda.ftp.ihm;
+package cda.ftp.client.logic;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import cda.ftp.client.logic.CommFTP;
 import cda.ftp.ihm.components.FTPactionView;
 import cda.ftp.ihm.components.FTPappView;
 import cda.ftp.ihm.components.FTPdirView;

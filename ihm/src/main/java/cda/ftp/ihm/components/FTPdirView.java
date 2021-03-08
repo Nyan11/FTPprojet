@@ -1,7 +1,7 @@
 package cda.ftp.ihm.components;
 
 
-import cda.ftp.ihm.FTPinterface;
+import cda.ftp.client.logic.FTPinterface;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

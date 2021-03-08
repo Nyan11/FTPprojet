@@ -1,6 +1,6 @@
 package cda.ftp.ihm.components;
 
-import cda.ftp.ihm.FTPinterface;
+import cda.ftp.client.logic.FTPinterface;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

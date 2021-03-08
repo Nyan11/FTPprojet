@@ -6,7 +6,8 @@ import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
-import cda.ftp.ihm.FTPinterface;
+import cda.ftp.client.logic.services.DownloaderService;
+import cda.ftp.client.logic.services.UploaderService;
 import javafx.util.Pair;
 
 public class CommFTP extends Communicator {
@@ -44,7 +45,6 @@ public class CommFTP extends Communicator {
 			UploaderService uls = new UploaderService(file, hostName, port);
 			uls.start();
 			FTPinterface.createStatusInfo(false, file.getName(), uls.progressProperty());
-			//new Thread(new Uploader(file, hostName, port)).start();
 		}
 		return true;
 	}

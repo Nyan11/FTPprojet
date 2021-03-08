@@ -1,4 +1,4 @@
-package cda.ftp.client.logic;
+package cda.ftp.client.logic.services;
 
 import java.io.File;
 

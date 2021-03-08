@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import cda.ftp.client.logic.services.Downloader;
+import cda.ftp.client.logic.services.Uploader;
+
 public class CommTerminalApp extends Communicator {
 
 	public static final File LOCAL_PATH = new File("local");

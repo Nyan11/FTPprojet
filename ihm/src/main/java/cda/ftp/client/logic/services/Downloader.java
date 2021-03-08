@@ -1,4 +1,4 @@
-package cda.ftp.client.logic;
+package cda.ftp.client.logic.services;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,48 +25,6 @@ public class Downloader extends Task {
 		this.port = port;
 		this.size = size;
 	}
-
-	/*
-	@Override
-	public void run() {
-		Socket socketFile;
-		InputStream is;
-		ByteArrayOutputStream baos;
-		BufferedOutputStream bos;
-
-		byte[] barray;
-		int bytesRead;
-
-		try {
-			barray = new byte[1];
-			socketFile = new Socket(this.host, port);
-
-			is = socketFile.getInputStream();
-
-			baos = new ByteArrayOutputStream();
-			
-			bos = new BufferedOutputStream(new FileOutputStream(file));
-			
-			bytesRead = is.read(barray, 0, barray.length);
-
-			do {
-				baos.write(barray);
-				bytesRead = is.read(barray);
-			} while (bytesRead != -1);
-
-			bos.write(baos.toByteArray());
-			bos.flush();
-			bos.close();
-			baos.close();
-			socketFile.close();
-			System.out.println("Telechargement de " + this.filePath + " a termine");
-		} catch (IOException e) {
-			System.out.println("Une erreur a arrete le telechargement");
-			e.printStackTrace();
-		}
-	}
-	*/
-	
 
 	@Override
 	protected Object call() throws Exception {

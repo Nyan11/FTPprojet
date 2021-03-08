@@ -3,7 +3,7 @@ package cda.ftp.ihm.components;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import cda.ftp.ihm.FTPinterface;
+import cda.ftp.client.logic.FTPinterface;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

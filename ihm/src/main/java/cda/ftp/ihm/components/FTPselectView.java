@@ -2,7 +2,7 @@ package cda.ftp.ihm.components;
 
 import java.util.List;
 
-import cda.ftp.ihm.FTPinterface;
+import cda.ftp.client.logic.FTPinterface;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
