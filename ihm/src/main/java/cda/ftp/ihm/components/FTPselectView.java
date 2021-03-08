@@ -80,6 +80,7 @@ public class FTPselectView extends ScrollPane {
 					}
 					else {
 						FTPinterface.currentFile = icon.getName();
+						FTPinterface.currentSize = icon.getSize();
 						FTPactionView.setSize(icon.getSize());
 					}
 				}

@@ -7,7 +7,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Uploader implements Runnable {
+import cda.ftp.ihm.FTPinterface;
+import javafx.concurrent.Task;
+
+public class Uploader extends Task implements Runnable {
 
 	protected File file;
 	protected String host;
@@ -19,6 +22,7 @@ public class Uploader implements Runnable {
 		this.port = port;
 	}
 
+	/*
 	@Override
 	public void run() {
 		Socket socketFile;
@@ -37,6 +41,7 @@ public class Uploader implements Runnable {
 			bis.read(barray, 0, barray.length);
 
 			bos.write(barray);
+			
 			bos.flush();
 			bos.close();
 			socketFile.close();
@@ -45,5 +50,38 @@ public class Uploader implements Runnable {
 			System.out.println("Une erreur a arrete l'upload");
 			e.printStackTrace();
 		}
+	}
+	*/
+
+	@Override
+	protected Object call() throws Exception {
+		Socket socketFile;
+		BufferedOutputStream bos;
+		BufferedInputStream bis;
+		byte[] barray;
+
+		try {
+			barray = new byte[(int) file.length()];
+
+			socketFile = new Socket(this.host, port);
+
+			bos = new BufferedOutputStream(socketFile.getOutputStream());
+			bis = new BufferedInputStream(new FileInputStream(file));
+
+			bis.read(barray, 0, barray.length);
+
+			bos.write(barray);
+			
+			bos.flush();
+			bos.close();
+			updateProgress(1, 1);
+			socketFile.close();
+			System.out.println("Upload de " + this.file.getName() + " a termine");
+			FTPinterface.updateAppAfterUpload();
+		} catch (IOException e) {
+			System.out.println("Une erreur a arrete l'upload");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

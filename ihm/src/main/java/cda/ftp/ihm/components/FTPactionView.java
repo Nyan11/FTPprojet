@@ -1,11 +1,13 @@
 package cda.ftp.ihm.components;
 
 import cda.ftp.ihm.FTPinterface;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -15,6 +17,7 @@ public class FTPactionView extends HBox {
 	private final static int MIN_WIDTH = 120;
 	private static Label name;
 	private static Label info;
+	private static FTPstatusView statusInfos;
 	
 	public FTPactionView() {
 		super();
@@ -27,6 +30,9 @@ public class FTPactionView extends HBox {
 		Button uploadButton = new Button("Upload");
 		
 		GridPane labelGrid = new GridPane();
+		
+		statusInfos = new FTPstatusView();
+		
 
 		name = new Label("");
 		info = new Label("");
@@ -34,6 +40,7 @@ public class FTPactionView extends HBox {
 		labelGrid.add(name, 0, 0);
 		labelGrid.add(info, 0, 1);
 		labelGrid.add(buttonsBox, 1, 0, 1, 2);
+		labelGrid.add(statusInfos, 0, 2, 2, 1);
 		
 		labelGrid.setPadding(new Insets(4, 8, 4, 8));
 		HBox.setHgrow(labelGrid, Priority.ALWAYS);
@@ -51,7 +58,7 @@ public class FTPactionView extends HBox {
 		
 		this.getChildren().add(labelGrid);
 		
-		uploadButton.setOnAction(e -> {
+		downloadButton.setOnAction(e -> {
 			FTPinterface.download();
 		});
 		
@@ -89,6 +96,10 @@ public class FTPactionView extends HBox {
 
 	public void updateView() {
 		clearText();
+	}
+	
+	public void addStatusInfos(boolean download, String name, ReadOnlyDoubleProperty progress) {
+		statusInfos.addInfo(download, name, progress);
 	}
 	
 	

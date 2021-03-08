@@ -86,7 +86,7 @@ public class CommTerminalApp extends Communicator {
 
 		if(recv.charAt(0) == '0') {
 			port = Integer.parseInt(recv.split(" ")[4]);
-			new Thread(new Downloader(LOCAL_PATH, message.split(" ")[1], this.host, port)).start();
+			new Thread(new Downloader(LOCAL_PATH, message.split(" ")[1], this.host, port, 0)).start();
 		}
 		return true;
 	}

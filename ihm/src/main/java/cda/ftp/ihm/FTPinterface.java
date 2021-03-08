@@ -14,6 +14,7 @@ import cda.ftp.ihm.components.FTPappView;
 import cda.ftp.ihm.components.FTPdirView;
 import cda.ftp.ihm.components.FTPiconView;
 import cda.ftp.ihm.components.FTPselectView;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class FTPinterface {
 	public static Set<Pair<String, Pair<Boolean, Long>>> lsValue = null;
 	public static String pwdValue = null;
 	public static String currentFile;
+	public static long currentSize;
 	public static String host;
 	
 	private static FTPselectView selectView;
@@ -136,16 +138,21 @@ public class FTPinterface {
 		actionView.updateView();
 		FTPinterface.currentFile = "";
 	}
+	
+	public static void updateAppAfterUpload() {
+		selectView.updateView();
+	}
 
 	public static void download() {
 		if(FTPinterface.currentFile.equals("")) {
+			System.out.println("No file selected");
 			return;
 		}
 		FileChooser fileChooser = new FileChooser();
 		File selectedFile = fileChooser.showSaveDialog(new Stage());
 		if(selectedFile != null) {
 			try {
-				FTPinterface.communicator.downloadBis("get " + FTPinterface.currentFile, selectedFile, FTPinterface.host);
+				FTPinterface.communicator.downloadBis("get " + FTPinterface.currentFile, selectedFile, FTPinterface.host, FTPinterface.currentSize);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -163,5 +170,9 @@ public class FTPinterface {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void createStatusInfo(boolean download, String name, ReadOnlyDoubleProperty progress) {
+		FTPinterface.actionView.addStatusInfos(download, name, progress);
 	}
 }

@@ -1,6 +1,6 @@
 package cda.ftp.ihm.components;
 
-import cda.ftp.ihm.components.icons.IconsUtils;
+import cda.ftp.ihm.components.specials.IconsUtils;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

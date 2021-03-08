@@ -41,12 +41,15 @@ public class CommFTP extends Communicator {
 
 		if(recv.charAt(0) == '0') {
 			port = Integer.parseInt(recv.split(" ")[4]);
-			new Thread(new Uploader(file, hostName, port)).start();
+			UploaderService uls = new UploaderService(file, hostName, port);
+			uls.start();
+			FTPinterface.createStatusInfo(false, file.getName(), uls.progressProperty());
+			//new Thread(new Uploader(file, hostName, port)).start();
 		}
 		return true;
 	}
 
-	public boolean downloadBis(String message, File file, String hostName) throws IOException {
+	public boolean downloadBis(String message, File file, String hostName, long size) throws IOException {
 		String recv;
 		int port;
 		
@@ -60,7 +63,9 @@ public class CommFTP extends Communicator {
 
 		if(recv.charAt(0) == '0') {
 			port = Integer.parseInt(recv.split(" ")[4]);
-			new Thread(new Downloader(file, message.split(" ")[1], hostName, port)).start();
+			DownloaderService dls = new DownloaderService(file, message.split(" ")[1], hostName, port, size);
+			dls.start();
+			FTPinterface.createStatusInfo(true, FTPinterface.currentFile, dls.progressProperty());
 		}
 		return true;
 	}

@@ -4,9 +4,14 @@ package cda.ftp.ihm.components;
 import cda.ftp.ihm.FTPinterface;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class FTPdirView extends HBox {
 	
@@ -32,7 +37,6 @@ public class FTPdirView extends HBox {
 		HBox.setHgrow(currentPath, Priority.ALWAYS);
 		
 		currentPath.setEditable(false);
-		currentPath.setFocusTraversable(true);
 	}
 	
 	public void updateView() {
