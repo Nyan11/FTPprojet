@@ -139,7 +139,9 @@ public class FTPinterface {
 	}
 	
 	public static void updateAppAfterUpload() {
+		System.out.println("AAAAAAAAAAAAAAAAAA");
 		selectView.updateView();
+		System.out.println("BBBBBBBBBBBBBBBBBB");
 	}
 
 	public static void download() {
