@@ -24,8 +24,8 @@ public class CommFTP extends Communicator {
 
 	@Override
 	public boolean end(String message) throws IOException {
-		// TODO Auto-generated method stub
-		return false;
+		ps.println(message);
+		return true;
 	}
 
 	public boolean uploadBis(String message, File file, String hostName) throws IOException {

@@ -17,10 +17,10 @@ public class FTPappView extends VBox {
 	private void generateView() {
         dir = new FTPdirView();
         menu = new FTPmenuView();
-        action = new FTPactionView();
         select = new FTPselectView();
+        action = new FTPactionView();
         
-        this.getChildren().add(menu.generateView());
+        this.getChildren().add(menu);
         this.getChildren().add(dir);
         this.getChildren().add(select);
         this.getChildren().add(action);

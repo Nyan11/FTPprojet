@@ -1,5 +1,7 @@
 package cda.ftp.ihm.components;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
@@ -10,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -19,6 +23,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class FTPloginView extends VBox {
+	
+	private final static String FULL_PATH_ICON = "resources/icons/ftp.png";
 
 	private TextField hostField;
 	private TextField portField;
@@ -91,7 +97,7 @@ public class FTPloginView extends VBox {
 	}
 
 	private void generateView() {
-		VBox titleBox = new VBox();
+		HBox titleBox = new HBox();
 
 		VBox credentialBox = new VBox();
 
@@ -103,7 +109,7 @@ public class FTPloginView extends VBox {
 		VBox passBox = new VBox();
 		VBox buttonBox = new VBox();
 
-		Label titleLabel = new Label("FTP");
+		Label titleLabel = new Label("ProjetFTP");
 		Label hostLabel = new Label("Host");
 		Label portLabel = new Label("Port");
 		Label userLabel = new Label("Login");
@@ -111,19 +117,27 @@ public class FTPloginView extends VBox {
 		incorectConnectLabel = new Label("");
 		incorectPassLabel = new Label("");
 
+		/*
 		hostField = new TextField("127.0.0.1");
 		portField = new TextField("2121");
 		userField = new TextField("yann");
+		*/
+		hostField = new TextField();
+		portField = new TextField();
+		userField = new TextField();
 		passField = new PasswordField();
 
 		loginButton = new Button("Log In");
+		
+		Image image = getImage(64);
+		ImageView imageView = new ImageView(image);
 
 		//portField.setTextFormatter(TextFormatter.);
 
 		this.getChildren().addAll(titleBox, credentialBox);
 		credentialBox.getChildren().addAll(connectBox, userBox, passBox, buttonBox);
 		connectBox.getChildren().addAll(hostBox, portBox);
-		titleBox.getChildren().addAll(titleLabel);
+		titleBox.getChildren().addAll(imageView, titleLabel);
 		hostBox.getChildren().addAll(hostLabel, hostField, incorectConnectLabel);
 		portBox.getChildren().addAll(portLabel, portField);
 		userBox.getChildren().addAll(userLabel, userField);
@@ -143,6 +157,7 @@ public class FTPloginView extends VBox {
 		credentialBox.setPadding(new Insets(16));
 		credentialBox.setSpacing(16);
 		connectBox.setSpacing(16);
+		titleBox.setSpacing(32);
 
 		HBox.setHgrow(hostBox, Priority.ALWAYS);
 
@@ -154,5 +169,17 @@ public class FTPloginView extends VBox {
 		buttonBox.setAlignment(Pos.CENTER);
 		VBox.setVgrow(buttonBox, Priority.ALWAYS);
 		VBox.setVgrow(credentialBox, Priority.ALWAYS);
+	}
+	
+	private static Image getImage(int size) {
+		FileInputStream input = null;
+		Image image = null;
+		try {
+			input = new FileInputStream(FULL_PATH_ICON);
+			image = new Image(input, size, size, false, false);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return image;
 	}
 }

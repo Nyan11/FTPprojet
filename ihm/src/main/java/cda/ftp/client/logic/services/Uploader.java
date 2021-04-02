@@ -47,6 +47,7 @@ public class Uploader extends Task {
 			socketFile.close();
 			System.out.println("Upload de " + this.file.getName() + " a termine");
 			FTPinterface.updateAppAfterUpload();
+			System.out.println("Upload de " + this.file.getName() + " a termine");
 		} catch (IOException e) {
 			System.out.println("Une erreur a arrete l'upload");
 			e.printStackTrace();

@@ -1,46 +1,50 @@
 package cda.ftp.ihm.components;
 
+import cda.ftp.client.logic.FTPinterface;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class FTPmenuView {
+public class FTPmenuView extends MenuBar {
+	
+	public FTPmenuView() {
+		super();
+		generateView();
+	}
 
-	public VBox generateView() {
-		VBox view;
+	private void generateView() {
 		Menu fileMenu = generateFileMenu();
-		Menu editMenu = generateEditMenu();
-		Menu searchMenu = generateSearchMenu();
+		//Menu editMenu = generateEditMenu();
+		//Menu searchMenu = generateSearchMenu();
 		Menu helpMenu = generateHelpMenu();
 
-		MenuBar menuBar = new MenuBar();
-		menuBar.getMenus().add(fileMenu);
-		menuBar.getMenus().add(editMenu);
-		menuBar.getMenus().add(searchMenu);
-		menuBar.getMenus().add(helpMenu);
-		
-		view = new VBox(menuBar);
-		return view;
+		this.getMenus().add(fileMenu);
+		//this.getMenus().add(editMenu);
+		//this.getMenus().add(searchMenu);
+		this.getMenus().add(helpMenu);
 	}
 	
 	private Menu generateHelpMenu() {
 		Menu main = new Menu("Help");
-		
-		MenuItem welcomeItem = new MenuItem("Welcome");
-		SeparatorMenuItem separator = new SeparatorMenuItem();
-		MenuItem HelpContentsItem = new MenuItem("Help Contents");
 		MenuItem AboutItem = new MenuItem("About");
 		
-		main.getItems().add(welcomeItem);
-		main.getItems().add(separator);
-		main.getItems().add(HelpContentsItem);
+		AboutItem.setOnAction(e -> {
+			Scene scene = new Scene(new FTPaboutView());
+			Stage secondaryStage = new Stage();
+			secondaryStage.setScene(scene);
+			secondaryStage.show();
+		});
+		
 		main.getItems().add(AboutItem);
 		
 		return main;
 	}
 
+	/*
 	private Menu generateSearchMenu() {
 		Menu main = new Menu("Search");
 		MenuItem searchItem = new MenuItem("Search");
@@ -74,10 +78,19 @@ public class FTPmenuView {
 		
 		return main;
 	}
+	*/
 
 	private Menu generateFileMenu() {
 		Menu main = new Menu("File");
 		
+		MenuItem logoffItem = new MenuItem("Log Off");
+		main.getItems().add(logoffItem);
+		
+		logoffItem.setOnAction(e -> {
+			FTPinterface.disconnect();
+		});
+		
+		/*
 		MenuItem newItem = new MenuItem("New");
 		MenuItem openItem = new MenuItem("Open File...");
 		Menu rescentFileSub = new Menu("Rescent Files");
@@ -122,6 +135,7 @@ public class FTPmenuView {
 		main.getItems().add(separator3);
 		main.getItems().add(propertiesItem);
 		main.getItems().add(exitItem);
+		*/
 		
 		return main;
 	}

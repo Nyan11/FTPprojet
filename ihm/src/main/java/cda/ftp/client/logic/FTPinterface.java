@@ -12,6 +12,7 @@ import cda.ftp.ihm.components.FTPactionView;
 import cda.ftp.ihm.components.FTPappView;
 import cda.ftp.ihm.components.FTPdirView;
 import cda.ftp.ihm.components.FTPiconView;
+import cda.ftp.ihm.components.FTPloginView;
 import cda.ftp.ihm.components.FTPselectView;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.Scene;
@@ -32,6 +33,8 @@ public class FTPinterface {
 	private static FTPselectView selectView;
 	private static FTPactionView actionView;
 	private static FTPdirView dirView;
+	
+	private static Stage stage;
 
 	public static boolean connect(String stringHost, String stringPort) throws UnknownHostException, IOException {
 		int port;
@@ -67,6 +70,16 @@ public class FTPinterface {
 		}
 	}
 
+	public static void disconnect() {
+		try {
+			FTPinterface.communicator.end("bye");
+			FTPinterface.communicator.closeAll();
+			FTPinterface.goToLogin();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@SuppressWarnings("exports")
 	public static void goToApp(Stage stage) {
 		Scene mainScene;
@@ -74,6 +87,7 @@ public class FTPinterface {
 		double height;
 		double width;
 
+		FTPinterface.stage = stage;
 		height = stage.getScene().getHeight();
 		width = stage.getScene().getWidth();
 		app = new FTPappView();
@@ -82,6 +96,24 @@ public class FTPinterface {
 		FTPinterface.selectView = app.select;
 		FTPinterface.dirView = app.dir;
 		FTPinterface.actionView = app.action;
+
+		stage.setScene(mainScene);
+		stage.show();
+	}
+	
+	@SuppressWarnings("exports")
+	public static void goToLogin() {
+		Scene mainScene;
+		FTPloginView login;
+		double height;
+		double width;
+
+		FTPinterface.stage = stage;
+		height = stage.getScene().getHeight();
+		width = stage.getScene().getWidth();
+		login = new FTPloginView(stage);
+		mainScene = new Scene(login, width, height);
+
 
 		stage.setScene(mainScene);
 		stage.show();
@@ -107,6 +139,10 @@ public class FTPinterface {
 			}).collect(Collectors.toList());
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			pwdValue = "Serveur KO";
+			goToLogin();
+			e.printStackTrace();
 		}
 		return sortedResult;
 	}
@@ -116,6 +152,10 @@ public class FTPinterface {
 			FTPinterface.communicator.sendMessage("pwd");
 		} catch (IOException e) {
 			pwdValue = "Error: Cannot find the path";
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			pwdValue = "Serveur KO";
+			goToLogin();
 			e.printStackTrace();
 		}
 		return pwdValue;
@@ -128,6 +168,10 @@ public class FTPinterface {
 		} catch (IOException e) {
 			pwdValue = "Error: Cannot find the path";
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			pwdValue = "Serveur KO";
+			goToLogin();
+			e.printStackTrace();
 		}
 	}
 	
@@ -139,9 +183,7 @@ public class FTPinterface {
 	}
 	
 	public static void updateAppAfterUpload() {
-		System.out.println("AAAAAAAAAAAAAAAAAA");
 		selectView.updateView();
-		System.out.println("BBBBBBBBBBBBBBBBBB");
 	}
 
 	public static void download() {
@@ -156,6 +198,10 @@ public class FTPinterface {
 				FTPinterface.communicator.downloadBis("get " + FTPinterface.currentFile, selectedFile, FTPinterface.host, FTPinterface.currentSize);
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (NullPointerException e) {
+				pwdValue = "Serveur KO";
+				goToLogin();
+				e.printStackTrace();
 			}
 		}
 	}
@@ -168,6 +214,10 @@ public class FTPinterface {
 				FTPinterface.communicator.uploadBis("stor " + selectedFile.getName(), selectedFile, FTPinterface.host);
 				//selectView.updateView();
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				pwdValue = "Serveur KO";
+				goToLogin();
 				e.printStackTrace();
 			}
 		}
